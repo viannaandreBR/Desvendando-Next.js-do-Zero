@@ -16,6 +16,15 @@ export default function Home({ repositories, date }) {
   //     });
   // }, []);
 
+  // export default function BlogPost({ date }) {
+  //   return (
+  //     <>
+  //       <h1> Hello Blog !</h1>
+  //       <h2> {date} </h2>
+  //     </>
+  //   );
+  // }
+
   return (
     <>
       <h1> Data do Servidor</h1>
@@ -31,7 +40,6 @@ export default function Home({ repositories, date }) {
 }
 
 // export const getServerSideProps: GetServerSideProps = async () => {
-
 export const getStaticProps: GetStaticProps = async () => {
   const response = await fetch(
     'https://api.github.com/users/viannaandrebr/repos'
