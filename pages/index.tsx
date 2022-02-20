@@ -1,3 +1,5 @@
+// CSR - Client Side Rendering Page
+
 import { GetServerSideProps } from 'next';
 import { useEffect, useState } from 'react';
 

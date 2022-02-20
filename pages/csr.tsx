@@ -1,4 +1,5 @@
 // import { GetServerSideProps } from 'next';
+// CSR - Client Side Rendering Page
 import { useEffect, useState } from 'react';
 
 export default function Home() {
