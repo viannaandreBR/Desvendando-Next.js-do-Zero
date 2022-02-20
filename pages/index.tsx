@@ -1,9 +1,9 @@
 // CSR - Client Side Rendering Page
 
-import { GetServerSideProps } from 'next';
+import { GetServerSideProps, GetStaticProps } from 'next';
 import { useEffect, useState } from 'react';
 
-export default function Home({ repositories }) {
+export default function Home({ repositories, date }) {
   // const [repositories, setRepositories] = useState<string[]>([]);
 
   // useEffect(() => {
@@ -17,15 +17,22 @@ export default function Home({ repositories }) {
   // }, []);
 
   return (
-    <ul>
-      {repositories.map((repo) => (
-        <li key={repo}> {repo} </li>
-      ))}
-    </ul>
+    <>
+      <h1> Data do Servidor</h1>
+      <h3> {date} </h3>
+      <h1> Repositórios</h1>
+      <ul>
+        {repositories.map((repo) => (
+          <li key={repo}> {repo} </li>
+        ))}
+      </ul>
+    </>
   );
 }
 
-export const getServerSideProps: GetServerSideProps = async () => {
+// export const getServerSideProps: GetServerSideProps = async () => {
+
+export const getStaticProps: GetStaticProps = async () => {
   const response = await fetch(
     'https://api.github.com/users/viannaandrebr/repos'
   );
@@ -37,6 +44,8 @@ export const getServerSideProps: GetServerSideProps = async () => {
   return {
     props: {
       repositories: repositoryNames,
+      date: new Date().toISOString(),
     },
+    revalidate: 5, // quantos segundos páginas em cache
   };
 };
